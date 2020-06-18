@@ -1,0 +1,24 @@
+write:
+1. HTTP write (headers/data) ->
+2. TLS write_tmp_buffer (unencrypted) ->
+3. TLS BIO (encrypted) ->
+	network (TCP)
+
+
+2: Unencrypted buffer for combining small writes together. All writes go through the bufferedWrite function.
+	Large sections of data skip the buffer.
+	If TLSConnection.bufferedWrite does not fully write, the data MUST be attempted for writing again until it succeeds (unless the connection is closed).
+	Partial writes are possible, in which case the remainder of the write must be retried.
+
+3: Stores encrypted data while it is being sent over TCP
+	
+
+
+
+
+
+read:
+1. TCPServer.zig read event (64KB buffers, encrypted) ->
+2. HTTP callback (takes slice from 1.) ->
+3. TLS read (takes slice from 2., decrypts data) ->
+4. TLS read_buffer (decrypted)
