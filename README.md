@@ -1,9 +1,9 @@
 
 ## Dependencies
-Zig 0.6.0 compiler
-Linux 5.6+
-OpenSSL 1.1.1
-liburing 0.6
+- Zig 0.6.0 compiler
+- Linux 5.6+
+- OpenSSL 1.1.1
+- liburing 0.6
 
 ## Configuration
 There is 1 mandatory configuration file (files.csv) and 2 optional configuration files (settings.conf and extra_headers.http).
